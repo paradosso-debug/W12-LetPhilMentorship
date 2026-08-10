@@ -26,7 +26,6 @@ These projects integrate **DOM manipulation, local storage, navigation, API usag
 ### 2. Recipe Finder App
 
 **Tech:** HTML, CSS, JavaScript
-
 **Features:**
 ✅ Search for recipes using the **[TheMealDB API](https://www.themealdb.com/api.php)** (free, no API key) — fetch with Axios and async/await, build the search URL with query parameters
 ✅ Render recipe cards to the DOM using component functions — each card built with `createElement` and `appendChild`
