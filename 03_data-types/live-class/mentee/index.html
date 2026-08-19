@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Types — Live Class</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <!--
+  ============================================================
+  📦  DATA TYPES — USER PROFILE CARD
+  ============================================================
+  This lesson is console-based.
+  Open DevTools (F12 → Console) to see all your output.
+
+  The page is a visual reference while you work in app.js.
+  ============================================================
+  -->
+
+  <body>
+
+    <header class="site-header">
+      <h1>📦 Data Types</h1>
+      <span class="lesson-badge">Lesson 03</span>
+    </header>
+
+    <div class="ref-layout">
+
+      <div class="ref-card">
+        <h2>Primitive Types</h2>
+        <div class="type-list">
+          <div class="type-row">
+            <span class="type-badge string">string</span>
+            <code>"hello"  'world'  `template`</code>
+          </div>
+          <div class="type-row">
+            <span class="type-badge number">number</span>
+            <code>42  3.14  -7  NaN</code>
+          </div>
+          <div class="type-row">
+            <span class="type-badge boolean">boolean</span>
+            <code>true  false</code>
+          </div>
+          <div class="type-row">
+            <span class="type-badge undefined">undefined</span>
+            <code>let x;  → x is undefined</code>
+          </div>
+          <div class="type-row">
+            <span class="type-badge null">null</span>
+            <code>let x = null;  → intentionally empty</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="ref-card">
+        <h2>Template Literals ← Big Upgrade</h2>
+        <div class="code-block">
+          <pre><code><span class="c">// Old way</span>
+"Hello, " + name + "! Age: " + age
+
+<span class="c">// Template literal — backtick + ${}</span>
+`Hello, ${name}! Age: ${age}`
+
+<span class="c">// Any expression inside ${}</span>
+`Price: $${price * 1.08}`
+`Is adult: ${age >= 18}`
+
+<span class="c">// Multiline — no \n needed</span>
+`Name: ${name}
+Email: ${email}`</code></pre>
+        </div>
+      </div>
+
+      <div class="ref-card">
+        <h2>The 6 Falsy Values</h2>
+        <div class="falsy-grid">
+          <code>false</code>
+          <code>0</code>
+          <code>""</code>
+          <code>null</code>
+          <code>undefined</code>
+          <code>NaN</code>
+        </div>
+        <p class="ref-note">Everything else is truthy — including <code>"0"</code>, <code>"false"</code>, <code>[]</code>, <code>{}</code></p>
+      </div>
+
+      <div class="ref-card">
+        <h2>typeof</h2>
+        <div class="code-block">
+          <pre><code>typeof "hello"    → "string"
+typeof 42         → "number"
+typeof true       → "boolean"
+typeof undefined  → "undefined"
+typeof null       → "object" ⚠️</code></pre>
+        </div>
+        <p class="ref-note">⚠️ <code>typeof null === "object"</code> is a historic JS bug. Use <code>=== null</code> to check for null.</p>
+      </div>
+
+    </div>
+
+    <div class="console-reminder">
+      👉 Open <strong>DevTools Console</strong> to see your output.
+      &nbsp;&nbsp;Mac: <code>Cmd+Option+J</code> &nbsp;|&nbsp; Windows: <code>F12</code>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
