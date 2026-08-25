@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,36 +19,34 @@
   -->
 
   <body>
-
     <header class="site-header">
       <h1>📦 Data Types</h1>
       <span class="lesson-badge">Lesson 03</span>
     </header>
 
     <div class="ref-layout">
-
       <div class="ref-card">
         <h2>Primitive Types</h2>
         <div class="type-list">
           <div class="type-row">
             <span class="type-badge string">string</span>
-            <code>"hello"  'world'  `template`</code>
+            <code>"hello" 'world' `template`</code>
           </div>
           <div class="type-row">
             <span class="type-badge number">number</span>
-            <code>42  3.14  -7  NaN</code>
+            <code>42 3.14 -7 NaN</code>
           </div>
           <div class="type-row">
             <span class="type-badge boolean">boolean</span>
-            <code>true  false</code>
+            <code>true false</code>
           </div>
           <div class="type-row">
             <span class="type-badge undefined">undefined</span>
-            <code>let x;  → x is undefined</code>
+            <code>let x; → x is undefined</code>
           </div>
           <div class="type-row">
             <span class="type-badge null">null</span>
-            <code>let x = null;  → intentionally empty</code>
+            <code>let x = null; → intentionally empty</code>
           </div>
         </div>
       </div>
@@ -82,7 +80,10 @@ Email: ${email}`</code></pre>
           <code>undefined</code>
           <code>NaN</code>
         </div>
-        <p class="ref-note">Everything else is truthy — including <code>"0"</code>, <code>"false"</code>, <code>[]</code>, <code>{}</code></p>
+        <p class="ref-note">
+          Everything else is truthy — including <code>"0"</code>,
+          <code>"false"</code>, <code>[]</code>, <code>{}</code>
+        </p>
       </div>
 
       <div class="ref-card">
@@ -94,16 +95,19 @@ typeof true       → "boolean"
 typeof undefined  → "undefined"
 typeof null       → "object" ⚠️</code></pre>
         </div>
-        <p class="ref-note">⚠️ <code>typeof null === "object"</code> is a historic JS bug. Use <code>=== null</code> to check for null.</p>
+        <p class="ref-note">
+          ⚠️ <code>typeof null === "object"</code> is a historic JS bug. Use
+          <code>=== null</code> to check for null.
+        </p>
       </div>
-
     </div>
 
     <div class="console-reminder">
       👉 Open <strong>DevTools Console</strong> to see your output.
-      &nbsp;&nbsp;Mac: <code>Cmd+Option+J</code> &nbsp;|&nbsp; Windows: <code>F12</code>
+      &nbsp;&nbsp;Mac: <code>Cmd+Option+J</code> &nbsp;|&nbsp; Windows:
+      <code>F12</code>
     </div>
 
-    <script src="app.js"></script>
+    <script src="debug.js"></script>
   </body>
 </html>

@@ -289,7 +289,7 @@ console.log(`Initials: ${initials}`); // AR
 
 // TASK 6 — Coercion surprises
 // Log each expression AND its typeof.
-// Write a comment explaining why each one produces what it does.
+// Write a comment explaining why each one producesf what it does.
 //
 // a) "10" + 5
 // b) "10" - 5
@@ -298,7 +298,24 @@ console.log(`Initials: ${initials}`); // AR
 // e) false + "!"
 
 console.log("\n--- Task 6: Coercion Surprises ---");
-// your code here
+const expression1 = "10" + 5;
+console.log(expression1, typeof expression1); // "15" String
+
+// (b)
+const expression2 = "10" - 5;
+console.log(expression2, typeof expression2); // 5 Number
+
+// (c)
+const expression3 = "10" * 2;
+console.log(expression3, typeof expression3); //20 Number
+
+// (d)
+const expression4 = true + 1;
+console.log(expression4, typeof expression4); // 2 Number
+
+// (e)
+const expression5 = false + "!";
+console.log(expression5, typeof expression5); // "false!" String
 
 // TASK 7 — Explicit conversion
 // age is the string "28" — as it would arrive from an HTML form input.
@@ -306,29 +323,45 @@ console.log("\n--- Task 6: Coercion Surprises ---");
 // a) Convert it to a number:
 //    const ageNumber = Number(age);
 //    Log: `ageNumber: ${ageNumber}` and `type: ${typeof ageNumber}`
-//
+//.
+console.log("\n--- Task 7: Explicit Conversion ---");
+const ageNumber = Number(age);
+console.log(ageNumber, typeof ageNumber);
+
 // b) Now you can do arithmetic:
 //    const birthYear = 2025 - ageNumber;
 //    Log: `Born approximately: ${birthYear}`
 //    (Try doing 2025 - age without converting — log what happens)
-//
+
+const birthYear = 2025 - ageNumber;
+console.log(`Born approximately: ${birthYear}`);
+
+const birthYearPreConversion = 2025 - age;
+console.log(`Born approximately: ${birthYearPreConversion}`);
+
 // c) What happens when you can't convert?
 //    const bad = Number("twenty-eight");
 //    Log: `bad: ${bad}`
 //    Log: `isNaN(bad): ${isNaN(bad)}`
 //    (isNaN() returns true if the value is NaN)
 //
+const bad = Number("twenty-eight");
+console.log(`bad: ${bad}`);
+console.log(`isNAN(bad) : ${isNaN(bad)}`); // not a number
+
 // d) parseInt extracts a number and stops at non-numeric characters:
 //    const messy = "42px";
 //    const px = parseInt(messy);
 //    Log: `px: ${px}`
 //
+const messy = "42px";
+const px = parseInt(messy); //42 keep search for numeric string until a nondigit is encountered
+console.log(`px: ${px}`);
 // e) Convert isPremium to a string:
 //    const premiumText = String(isPremium);
 //    Log: `premiumText: ${premiumText}` and typeof
-
-console.log("\n--- Task 7: Explicit Conversion ---");
-// your code here
+const premiumText = String(isPremium); // "true"
+console.log(`premiumText: ${premiumText} and typeof: ${typeof premiumText}`); // "true" string
 
 // ============================================================
 // PART 5 — NULL, UNDEFINED, AND FALSY VALUES
@@ -349,18 +382,33 @@ console.log("\n--- Task 7: Explicit Conversion ---");
 //    Log: `score: ${score}`
 //    Log: `lastLogin: ${lastLogin}`
 //
+console.log(`score: ${score}`); // Null
+console.log(`lastLogin: ${lastLogin}`); // undefined
+
 // b) Log their types:
 //    Log: `typeof score: ${typeof score}`
 //    Log: `typeof lastLogin: ${typeof lastLogin}`
 //
 //    Write a comment: what does typeof null return, and why is that odd?
 //
+console.log(`typeof score: ${typeof score}`); // "typeof score: object"
+console.log(`typeof lastLogin: ${typeof lastLogin}`); // "typeof lastLogin: undefined"
+// typeof null returns an object. old bug from javascript
+
 // c) Check each with Boolean() to confirm they're falsy:
 //    Log: `Boolean(null): ${Boolean(null)}`
 //    Log: `Boolean(undefined): ${Boolean(undefined)}`
-//
+console.log(`Boolean(null) : ${Boolean(null)}`); // Boolean(null) : FALSY
+console.log(`Boolean(undefined) : ${Boolean(undefined)}`); // Boolean(undefined) : FALSY
+
 // d) Write a comment in your own words:
 //    When would a variable hold null vs undefined?
+
+// Undefined would be when a variable has been declared but no value has been assigned.
+// Null would be when a variable is declared AND assigned as null
+
+let example;
+let example2 = null;
 
 console.log("\n--- Task 8: null and undefined ---");
 // your code here
@@ -384,6 +432,12 @@ console.log("\n--- Task 8: null and undefined ---");
 
 console.log("\n--- Task 9: Falsy Values ---");
 // your code here
+console.log(Boolean(false));
+console.log(Boolean(0));
+console.log(Boolean(""));
+console.log(Boolean(null));
+console.log(Boolean(undefined));
+console.log(Boolean(NaN));
 
 // ============================================================
 // PART 6 — == vs ===
@@ -407,11 +461,32 @@ console.log("\n--- Task 9: Falsy Values ---");
 //
 // a) 1 === "1"       and     1 == "1"
 // b) 0 === false     and     0 == false
+
+// (a)
+console.log(1 === "1"); // false
+console.log(typeof (1 == "1")); // true
+// === is strict equality, it checks both value and type. 1 is a number and "1" is a string, so they are not equal.
+
+// (b)
+console.log(0 === false); //false
+console.log(0 == false); // true
+//  === is strict equality, same reason as above. 0 is a number and false is a boolean.
+
 // c) "" === false    and     "" == false
 // d) null === undefined  and  null == undefined
 //
 // Write a final comment:
 // In what one situation would you intentionally use == instead of ===?
+
+console.log("" === false); //false === "" different type so return false?
+console.log("" == false); //true //loose equality treats empty "" and bool false as true?
+
+console.log(null === undefined); //false (=== type dont match)
+console.log(null == undefined); //true (loose equity treats null and undefined as equivalent)
+
+//final comment: use == if checking value only etc(5 == '5'). === for checking both value and typeof (5 ==='5') false
+let value;
+console.log(value == null); // true
 
 console.log("\n--- Task 10: == vs === ---");
 // your code here
@@ -448,3 +523,14 @@ console.log("\n--- Task 10: == vs === ---");
 
 console.log("\n--- Task 11: Profile Summary ---");
 // your code here
+
+const summary = `
+=== ${firstName[0].toUpperCase()}${lastName[0].toUpperCase()} — ${firstName[0].toUpperCase()}${firstName.slice(1).toLowerCase()} ${lastName[0].toUpperCase()}${lastName.slice(1).toLowerCase()} ===
+Email:   ${email.trim().toLowerCase()}
+Age:     ${Number(age)} (as a number, not "28")
+Premium: ${isPremium}
+Bio:     ${bio.trim()}
+Score:   ${score}
+`;
+
+console.log(summary);
