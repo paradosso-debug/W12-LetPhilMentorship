@@ -117,8 +117,6 @@ function renderHeader() {
   pageEl.textContent = `${profile.firstName}'s Dev Profile`;
 }
 
-renderHeader();
-
 // TASK 3
 // Declare a function called renderProfileCard.
 // Inside, select and fill in:
@@ -145,7 +143,6 @@ function renderProfileCard() {
   locationEl.textContent = profile.location;
   bioEl.textContent = profile.bio;
 }
-renderProfileCard();
 
 // ----------------------------------------------------------
 // PART 3 — CHANGING STYLES
@@ -200,7 +197,7 @@ function renderStatusBadge(status) {
   }
 }
 
-renderStatusBadge(profile.status);
+// (<span class="badge active"></span>).badge.active.active;
 
 // TASK 5
 // Declare a function called renderStats.
@@ -218,8 +215,6 @@ function renderStats() {
   commitsEl.textContent = profile.stats.commits;
   reviewsEl.textContent = profile.stats.reviews;
 }
-
-renderStats();
 
 // TASK 6 — classList.toggle (dark mode preview)
 // Declare a function called toggleDarkMode.
@@ -241,8 +236,8 @@ function toggleDarkMode() {
   console.log("Dark mode: " + bodyElement.classList.contains("dark"));
 }
 
-toggleDarkMode(); // turn on dark mode
-toggleDarkMode(); // turn off dark mode
+// toggleDarkMode(); // turn on dark mode
+// toggleDarkMode(); // turn off dark mode
 
 // ----------------------------------------------------------
 // PART 4 — CREATING AND INSERTING ELEMENTS
@@ -290,8 +285,6 @@ function renderSkills(skillsArray) {
   });
 }
 
-renderSkills(profile.skills);
-
 // TASK 8
 // Declare a function called addSkill.
 // Parameter: skillName (string)
@@ -305,8 +298,13 @@ renderSkills(profile.skills);
 // Call addSkill("Docker") to add another.
 
 function addSkill(skillName) {
-  // your code here
+  const skillList = document.getElementById("skills-list");
+  const li = document.createElement("li");
+  li.textContent = skillName;
+  skillList.appendChild(li);
 }
+
+addSkill("Python");
 
 // ----------------------------------------------------------
 // PART 5 — CONNECT THE DOTS (all 10 lessons)
@@ -323,7 +321,14 @@ function addSkill(skillName) {
 // Call removeFirstSkill() once and watch the first skill disappear.
 
 function removeFirstSkill() {
-  // your code here
+  const skillList = document.getElementById("skills-list");
+  const firstSkill = skillList.firstElementChild;
+
+  if (firstSkill) {
+    firstSkill.remove();
+  }
+
+  console.log(`Removed skill. Skills remaining: ${skillList.children.length}`);
 }
 
 // TASK 10 — Full render function (connect all parts)
@@ -340,7 +345,11 @@ function removeFirstSkill() {
 // function that orchestrates rendering the whole page.
 
 function renderProfile() {
-  // your code here
+  renderHeader();
+  renderProfileCard();
+  renderStatusBadge(profile.status);
+  renderStats();
+  renderSkills(profile.skills);
 }
 
 // ============================================================
@@ -351,3 +360,9 @@ function renderProfile() {
 // Then call addSkill() with a new skill name.
 // Then call removeFirstSkill() to test removal.
 // Then call selectElements() to inspect the DOM in the console.
+
+renderProfile();
+toggleDarkMode();
+addSkill("Java");
+removeFirstSkill();
+selectElements();

@@ -20,7 +20,9 @@ body {
   background-color: #f5f7fa;
   color: #2d3748;
   min-height: 100vh;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 /* --- DARK MODE ---
@@ -78,7 +80,7 @@ body.dark .site-header {
 }
 
 #theme-btn:hover {
-  background-color: rgba(0,0,0,0.05);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* --- MAIN LAYOUT --- */
@@ -101,7 +103,9 @@ body.dark .site-header {
   height: fit-content;
   position: sticky;
   top: 80px;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
 }
 
 /* Avatar circle — JS sets the initials as textContent */
@@ -132,6 +136,7 @@ body.dark .site-header {
 }
 
 /* Status badge — .badge.active turns it green, .badge.away turns it yellow */
+
 .badge {
   display: inline-block;
   padding: 4px 12px;
@@ -139,8 +144,8 @@ body.dark .site-header {
   font-size: 0.75rem;
   font-weight: 600;
   margin-top: 10px;
-  background-color: #e2e8f0;
-  color: #4a5568;
+  background-color: #0b56b9;
+  color: #174086;
 }
 
 .badge.active {
@@ -170,7 +175,9 @@ body.dark .site-header {
   border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 24px;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
 }
 
 .section-block h3 {
