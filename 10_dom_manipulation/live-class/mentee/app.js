@@ -73,8 +73,16 @@ const profile = {
 // Call selectElements() at the bottom of the file.
 
 function selectElements() {
-  // your code here
+  const titleEl = document.getElementById("page-title");
+  const nameEl = document.querySelector("#user-name");
+  const statEls = document.querySelectorAll(".stat");
+
+  console.log(titleEl);
+  console.log(nameEl);
+  console.log(statEls);
 }
+
+selectElements();
 
 // ----------------------------------------------------------
 // PART 2 — CHANGING CONTENT
@@ -104,8 +112,12 @@ function selectElements() {
 // Call renderHeader() at the bottom.
 
 function renderHeader() {
-  // your code here
+  const pageEl = document.getElementById("page-title");
+
+  pageEl.textContent = `${profile.firstName}'s Dev Profile`;
 }
+
+renderHeader();
 
 // TASK 3
 // Declare a function called renderProfileCard.
@@ -120,8 +132,20 @@ function renderHeader() {
 // Call renderProfileCard() at the bottom.
 
 function renderProfileCard() {
-  // your code here
+  const avatarEl = document.getElementById("avatar");
+  const nameEl = document.getElementById("user-name");
+  const titleEl = document.getElementById("user-title");
+  const locationEl = document.getElementById("user-location");
+  const bioEl = document.getElementById("user-bio");
+
+  avatarEl.textContent =
+    profile.firstName[0].toUpperCase() + profile.lastName[0].toUpperCase();
+  nameEl.textContent = profile.firstName + " " + profile.lastName;
+  titleEl.textContent = profile.title;
+  locationEl.textContent = profile.location;
+  bioEl.textContent = profile.bio;
 }
+renderProfileCard();
 
 // ----------------------------------------------------------
 // PART 3 — CHANGING STYLES
@@ -160,8 +184,23 @@ function renderProfileCard() {
 // Call renderStatusBadge(profile.status) at the bottom.
 
 function renderStatusBadge(status) {
-  // your code here
+  const statusBadge = document.getElementById("status-badge");
+  statusBadge.textContent =
+    status === "active" ? "🟢 Active" : status === "away" ? "Away" : "Offline";
+
+  // Removing prior classes
+  statusBadge.classList.remove("active", "away", "offline");
+
+  if (status === "active") {
+    statusBadge.classList.add("active");
+  } else if (status === "away") {
+    statusBadge.classList.add("away");
+  } else {
+    statusBadge.classList.add("offline");
+  }
 }
+
+renderStatusBadge(profile.status);
 
 // TASK 5
 // Declare a function called renderStats.
@@ -172,8 +211,15 @@ function renderStatusBadge(status) {
 // Call renderStats() at the bottom.
 
 function renderStats() {
-  // your code here
+  document.getElementById("stat-projects").textContent = profile.stats.projects;
+  const commitsEl = document.getElementById("stat-commits");
+  const reviewsEl = document.getElementById("stat-reviews");
+
+  commitsEl.textContent = profile.stats.commits;
+  reviewsEl.textContent = profile.stats.reviews;
 }
+
+renderStats();
 
 // TASK 6 — classList.toggle (dark mode preview)
 // Declare a function called toggleDarkMode.
@@ -190,8 +236,13 @@ function renderStats() {
 // from classList.add?
 
 function toggleDarkMode() {
-  // your code here
+  const bodyElement = document.body;
+  bodyElement.classList.toggle("dark");
+  console.log("Dark mode: " + bodyElement.classList.contains("dark"));
 }
+
+toggleDarkMode(); // turn on dark mode
+toggleDarkMode(); // turn off dark mode
 
 // ----------------------------------------------------------
 // PART 4 — CREATING AND INSERTING ELEMENTS
@@ -231,8 +282,15 @@ function toggleDarkMode() {
 // Call renderSkills(profile.skills) at the bottom.
 
 function renderSkills(skillsArray) {
-  // your code here
+  const skillsEl = document.getElementById("skills-list");
+  skillsArray.forEach((skill) => {
+    const li = document.createElement("li");
+    li.textContent = skill;
+    skillsEl.appendChild(li);
+  });
 }
+
+renderSkills(profile.skills);
 
 // TASK 8
 // Declare a function called addSkill.

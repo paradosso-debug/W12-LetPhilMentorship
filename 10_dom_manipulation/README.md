@@ -167,6 +167,7 @@ unOrdered.innerHTML += "<li>Shower</li>"
    document.querySelector("skills-list"); // ❌ looks for a <skills-list> tag
    document.querySelector("#skills-list"); // ✅ looks for id="skills-list"
    document.querySelector(".skills-list"); // ✅ looks for class="skills-list"
+   document.querySelectorAll(".skills-list");
    ```
 
 5. **Using innerHTML in a loop (slow and risky)**
@@ -180,6 +181,20 @@ unOrdered.innerHTML += "<li>Shower</li>"
    li. = item;
    list.appendChild(li);
    ```
+
+   ```js
+   <li id="listItem"></li>;
+   const listItem = document.getElementById("listItem");
+   ```
+
+listItem.innerHTML = "<strong>Buy Milk</strong>"
+
+clientsusername Bob
+email: test@test.com
+
+hey I would like to get an appointment. <h1>Hello Hacker</h1>
+
+```
 
 ---
 
@@ -196,3 +211,4 @@ By the end of this class you should be able to:
 - [ ] Create a new element, set its content, and append it to the page
 - [ ] Remove an element from the DOM
 - [ ] Wrap all DOM operations inside named functions
+```
