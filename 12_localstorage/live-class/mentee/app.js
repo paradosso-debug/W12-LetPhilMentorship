@@ -160,9 +160,9 @@ testObjectStorage();
 //     .map(li => li.textContent)
 
 function getCurrentSkills() {
-  return Array.from(
-    document.querySelectorAll("#skills-list li, #skills-listItem li"),
-  ).map((li) => li.textContent);
+  return Array.from(document.querySelectorAll("#skills-list li")).map(
+    (li) => li.textContent,
+  );
 }
 
 function saveProfile() {
@@ -273,11 +273,13 @@ function updateCharCount() {
 
 function applyDarkMode(isDark) {
   if (isDark) {
-    document.body.classList.add("dark");
-    document.getElementById("theme-btn").textContent = "☀️ Light Mode";
+    //to trigger call in true
+    document.body.classList.add("dark"); //add dark class css to the body document
+    document.getElementById("theme-btn").textContent = "☀️ Light Mode"; //change text theme  of button to light mode
   } else {
-    document.body.classList.remove("dark");
-    document.getElementById("theme-btn").textContent = "🌙 Dark Mode";
+    //to trigger call in false
+    document.body.classList.remove("dark"); //remove dark class css to body document
+    document.getElementById("theme-btn").textContent = "🌙 Dark Mode"; //change text theme of button to dark mode
   }
 }
 
@@ -298,7 +300,7 @@ function applyDarkMode(isDark) {
 // status dropdown, dark mode class, theme button text.
 
 function renderWithDefaults() {
-  document.getElementById("bio-input").textContent = defaultProfile.bio;
+  document.getElementById("bio-input").value = defaultProfile.bio;
   const skillsList = document.getElementById("skills-list");
   skillsList.textContent = "";
   defaultProfile.skills.forEach((skill) => {
@@ -314,6 +316,7 @@ function renderWithDefaults() {
 function loadProfile() {
   const saved = localStorage.getItem("profileData");
   if (saved === null) {
+    // this handles the edge case when the user did NOT save anything to the local storage (did not click the save button)
     renderWithDefaults();
     return;
   }
@@ -419,9 +422,9 @@ function updateSkillCount() {
 // (Same as Event Listeners lesson)
 
 function renderStatusBadge(status) {
-  const statusBadge = document.getElementById("status-badge");
+  const statusBadge = document.getElementById("status-badge"); // get the current value that is selected in the drop down
   statusBadge.classList.remove("active", "away", "offline");
-  statusBadge.textContent = status; //"Away";
+  statusBadge.textContent = status;
   statusBadge.classList.add(status);
   console.log(statusBadge);
 }
@@ -462,15 +465,38 @@ function renderStatusBadge(status) {
 //    calls renderStatusBadge.
 
 function handleThemeToggle() {
-  // your code here
+  document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  document.getElementById("theme-btn").textContent = isDark
+    ? "Light Mode"
+    : "Dark Mode";
+  saveProfile();
 }
 
 function handleSkillSubmit(event) {
-  // your code here
+  event.preventDefault(); //stop propagation
+  const skillInput = document.getElementById("skill-input"); //target input adding skills
+  const skillName = skillInput.value.trim(); //trim whitespaces
+
+  if (!skillName) return; // only one line of code, no brackets necessary
+
+  // handle the edge case when the user inputs a skill that is already in the skills list
+  const existingSkill = getCurrentSkills().some(
+    // use .some to check if the skill is in the list
+    (skill) => skill.trim().toLowerCase() === skillName.toLowerCase(),
+  );
+
+  if (existingSkill) {
+    alert("This skill already exisits. Try adding a different one!");
+    return;
+  }
+  addSkillToPage(skillName);
+  saveProfile();
+  skillInput.value = "";
 }
 
 function handleStatusChange(event) {
-  // your code here
+  renderStatusBadge(event.target.value);
 }
 
 document
@@ -505,8 +531,18 @@ document
 document
   .getElementById("bio-input")
   .addEventListener("input", function (event) {
-    // your code here
+    updateCharCount();
+    saveProfile();
   });
+
+document
+  .getElementById("status-select")
+  .addEventListener("change", handleStatusChange);
+
+function handleStatusChange(event) {
+  renderStatusBadge(event.target.value);
+  saveProfile();
+}
 
 // ============================================================
 // START THE PAGE
