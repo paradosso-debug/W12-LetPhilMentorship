@@ -205,7 +205,7 @@ async function checkProfile() {
 
     document
       .getElementById("profile-card")
-      .appendchild(createProfileCard(response.data));
+      .appendChild(createProfileCard(response.data));
 
     await fetchRepos(usernameInput);
   } catch (error) {
@@ -231,6 +231,10 @@ function handleGithubSubmit(event) {
 }
 
 // wire up the form listener here
+
+document
+  .getElementById("github-form")
+  .addEventListener("submit", handleGithubSubmit);
 
 // ⭐ STRETCH — the language breakdown, unchanged from fetch.
 // Rendering never noticed the network swap. Count the layers
