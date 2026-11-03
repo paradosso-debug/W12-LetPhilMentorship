@@ -54,10 +54,16 @@ function MemberCard(props) {
   memberName.textContent = props.member.name;
 
   const memberRole = document.createElement("p");
+  memberRole.className = "member-role";
   memberRole.textContent = props.member.role + " . " + props.member.dept;
 
   const memberBio = document.createElement("p");
+  memberBio.className = "member-bio";
   memberBio.textContent = props.member.bio;
+
+  memberCard.append(image, memberName, memberRole, memberBio);
+
+  return memberCard;
 }
 
 // mount it here
@@ -71,19 +77,56 @@ document.getElementById("app").appendChild(MemberCard({ member: member }));
 //      ⚠️ The button does NOT decide what "Contact" means — it
 //      just calls the callback it was given. The caller decides.
 //
+
+function MemberCard(props) {
+  const memberCard = document.createElement("div");
+  memberCard.className = "member-card";
+
+  const image = document.createElement("img");
+  image.className = "member-photo";
+  image.src = props.member.photo;
+  image.alt = props.member.name;
+
+  const memberName = document.createElement("h3");
+  memberName.textContent = props.member.name;
+
+  const memberRole = document.createElement("p");
+  memberRole.className = "member-role";
+  memberRole.textContent = props.member.role + " . " + props.member.dept;
+
+  const memberBio = document.createElement("p");
+  memberBio.className = "member-bio";
+  memberBio.textContent = props.member.bio;
+
+  const contactBtn = document.createElement("button");
+  contactBtn.textContent = `📧 Contact`;
+  contactBtn.addEventListener("click", function () {
+    props.onContact(props.member.email);
+  });
+
+  memberCard.append(image, memberName, memberRole, memberBio, contactBtn);
+
+  return memberCard;
+}
+
 // Declare a function called handleContact.
 // Parameter: email
 // Inside: console.log("Contacting: " + email)
+
+function handleContact(email) {
+  console.log("Contacting:" + email);
+}
+
+document.getElementById("app").innerHTML = "";
+document
+  .getElementById("app")
+  .appendChild(MemberCard({ member: member, onContact: handleContact }));
 //
 // Update your mount call to also pass onContact:
 //   document.getElementById("app").innerHTML = ""; // clear the old card
 //   document.getElementById("app").appendChild(
 //     MemberCard({ member: member, onContact: handleContact })
 //   );
-
-function handleContact(email) {
-  // your code here
-}
 
 // update the mount call here
 
@@ -109,6 +152,45 @@ function handleContact(email) {
 
 // rewrite MemberCard here
 
+function MemberCardV3({
+  member: { name, role, dept, email, photo, bio },
+  onContact,
+}) {
+  const memberCard = document.createElement("div");
+  memberCard.className = "member-card";
+
+  const image = document.createElement("img");
+  image.className = "member-photo";
+  image.src = photo;
+  image.alt = name;
+
+  const memberName = document.createElement("h3");
+  memberName.textContent = name;
+
+  const memberRole = document.createElement("p");
+  memberRole.className = "member-role";
+  memberRole.textContent = role + " . " + dept;
+
+  const memberBio = document.createElement("p");
+  memberBio.className = "member-bio";
+  memberBio.textContent = bio;
+
+  const contactBtn = document.createElement("button");
+  contactBtn.textContent = `📧 Contact`;
+  contactBtn.addEventListener("click", function () {
+    onContact(email);
+  });
+
+  memberCard.append(image, memberName, memberRole, memberBio, contactBtn);
+
+  return memberCard;
+}
+
+document.getElementById("app").innerHTML = "";
+document
+  .getElementById("app")
+  .appendChild(MemberCardV3({ member: member, onContact: handleContact }));
+
 // TASK 4 — nested destructuring, outside of props
 // Declare a function called formatLocation.
 // Parameter: a destructured object matching { address: { city, country } }
@@ -121,11 +203,13 @@ function handleContact(email) {
 // This is the SAME { a: { b } } pattern from Task 3 — just on
 // an ordinary function instead of a component.
 
-function formatLocation(/* your destructured parameter here */) {
-  // your code here
+function formatLocation({ address: { city, country } }) {
+  return city + ", " + country;
 }
 
 console.log(formatLocation(member));
+
+// console.log(formatLocation(member));
 
 // ============================================================
 // PASS 3 — ONE MORE TRICK, QUICK CLOSE
@@ -143,8 +227,11 @@ console.log(formatLocation(member));
 
 let first = "Alex";
 let last = "Rivera";
-// your swap here
-console.log(first, last);
+let surname = "Flores";
+
+[first, last, surname] = [surname, last, first];
+console.log(`${first}, ${last} ${surname}`);
+// console.log(typeof first, typeof last);
 
 // ============================================================
 // 📝 RECAP
@@ -155,3 +242,42 @@ console.log(first, last);
 //        or array — including right inside a function's own
 //        parameter list. That's what real component props look
 //        like in React, Vue, and everywhere else.
+
+// What are props, and why do we use them?
+
+// Without Props
+
+// function greet() {
+//   console.log("Hello, Jae!");
+// }
+
+// greet(); // Hello, Jae!
+
+// function greet(props) {
+//   console.log(`Hello, ${props.name}`);
+// }
+
+// greet({ name: "Jae" });
+// greet({ name: "Maliq" });
+
+// What is destructuring, and why do we use it?
+
+// const user = {
+//   name: "Jae",
+//   role: "Developer",
+//   age: 33,
+// };
+
+// No destructuring
+
+// const userName = user.name;
+// const userRole = user.role;
+
+// console.log(userName);
+// console.log(userRole);
+
+// const { name, role, age } = user;
+
+// console.log(name);
+// console.log(role);
+// console.log(age);
